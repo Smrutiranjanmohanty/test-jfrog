@@ -19,7 +19,7 @@ jobs:
         with:
           registry: trialnocmuq.jfrog.io
           username: ${{ secrets.JFROG_USER }}
-          password: ${{ secrets.JFROG_PASSWORD }}
+          password: ${{ secrets.JFROG_PASSWD }}
 
       - name: Build and Push Docker Image
         run: |
