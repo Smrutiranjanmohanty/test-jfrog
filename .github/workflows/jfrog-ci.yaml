@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and Push Docker Image to JFROG
         run: |
-          IMAGE_NAME="trialnocmuq.jfrog.io/jfrog-docker-image-repo/python-test-app:${{ github.sha }}"
+          IMAGE_NAME="trialnocmuq.jfrog.io/jfrog-docker-image-repo-for-smruti/python-test-app:${{ github.sha }}"
           docker build -t $IMAGE_NAME -f application-code/Dockerfile .
           docker push $IMAGE_NAME
 
