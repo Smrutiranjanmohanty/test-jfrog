@@ -1,0 +1,30 @@
+name: Development Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+    
+      - name: Login to JFrog Artifactory
+        uses: docker/login-action@v1
+        with:
+          registry: trialnocmuq.jfrog.io
+          username: ${{ secrets.JFROG_USER }}
+          password: ${{ secrets.JFROG_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_NAME="trialnocmuq.jfrog.io/jfrog-docker-image-repo/smruti-nginx:${{ github.sha }}"
+          docker build -t $IMAGE_NAME .
+          docker push $IMAGE_NAME
+
+      
